@@ -84,7 +84,7 @@ const MainNavigator = createDrawerNavigator(
     Home: { screen: HomeNavigator },
     Directory: { screen: DirectoryNavigator },
     About: { screen: AboutNavigator },
-    Contact: { screen: ContactNavigator }
+    Contact: { screen: ContactNavigator },
   },
   {
     drawerBackgroundColor: "#CEC8FF",
