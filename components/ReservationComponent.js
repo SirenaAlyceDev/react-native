@@ -4,11 +4,12 @@ import {
   View,
   ScrollView,
   StyleSheet,
+  Picker,
   Switch,
   Button,
   Modal
 } from "react-native";
-import { Picker } from "@react-native-picker/picker";
+// import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 class Reservation extends Component {
