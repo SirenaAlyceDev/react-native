@@ -43,7 +43,7 @@ class Favorites extends Component {
                     {
                       text: "Cancel",
                       onPress: () => console.log(item.name + "Not Deleted"),
-                      style: "cance",
+                      style: "cancel",
                     },
                     {
                       text: "OK",

@@ -7,7 +7,7 @@ import {
   Picker,
   Switch,
   Button,
-  Modal
+  Alert
 } from "react-native";
 import * as Animatable from 'react-native-animatable';
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -37,7 +37,20 @@ class Reservation extends Component {
 
     handleReservation() {
         console.log(JSON.stringify(this.state));
-        this.toggleModal();
+        const message = `Number of Campers: ${this.state.campers} \n\nHike-In? ${this.state.hikeIn} \n\nDate: ${this.state.date.toLocaleDateString('en-US')}`;
+        Alert.alert(
+            "Begin Search?",
+            message,
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              { text: "OK", onPress: () => console.log("OK Pressed") }
+            ],
+            { cancelable: false }
+          );
     }
 
     resetForm() {
@@ -109,27 +122,6 @@ class Reservation extends Component {
                     />
                 </View>
                 </Animatable.View>
-                <Modal
-                    animationType={"slide"}
-                    transparent={false}
-                    visible={this.state.showModal}
-                    onRequestClose={() => this.toggleModal()}
-                >
-                    <View style={styles.modal}>
-                        <Text style={styles.modalTitle}>Search Campsite Reservations</Text>
-                        <Text style={styles.modalText}>Number of Campers: {this.state.campers}</Text>
-                        <Text style={styles.modalText}>Hike-In?: {this.state.hikeIn ? 'Yes' : 'No'}</Text>
-                        <Text style={styles.modalText}>Date: {this.state.date.toLocaleDateString('en-US')}</Text>
-                        <Button
-                            onPress={() => {
-                                this.toggleModal();
-                                this.resetForm();
-                            }}
-                            color='#5637dd'
-                            title='Close'
-                        />
-                    </View>
-                </Modal>
             </ScrollView>
         );
     }
@@ -152,23 +144,6 @@ const styles = StyleSheet.create({
     },
     formItem: {
         flex: 1
-    },
-    modal: { 
-        justifyContent: 'center',
-        margin: 20
-    },
-    modalTitle: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        backgroundColor: '#5637DD',
-        textAlign: 'center',
-        color: '#fff',
-        marginTop:20,
-        marginBottom: 20
-    },
-    modalText: {
-        fontSize: 18,
-        margin: 10
     }
 });
 
