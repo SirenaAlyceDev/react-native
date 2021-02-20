@@ -329,16 +329,15 @@ const MainNavigator = createDrawerNavigator(
 const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component {
+
   showNetinfo = async() => {
     let connectionInfo = await NetInfo.fetch();
-    if (connectionInfo.ok) {
-      Platform.OS === "ios"
-        ? Alert.alert("Initial Network Connectivity Type:", connectionInfo.type)
-        : ToastAndroid.show(
-            "Initial Network Connectivity Type: " + connectionInfo.type,
-            ToastAndroid.LONG
-          );
-    }
+    if (connectionInfo) {
+      (Platform.OS === 'ios')
+          ? Alert.alert('Initial Network Connectivity Type:', connectionInfo.type)
+          : ToastAndroid.show('Initial Network Connectivity Type: ' +
+              connectionInfo.type, ToastAndroid.LONG);
+  }
   }
 
   componentDidMount() {
